@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ImageSharpMAUITest"
+             xmlns:pages="clr-namespace:ImageSharpMAUITest.Pages"
+             x:Class="ImageSharpMAUITest.Pages.MainPage"
+             x:DataType="pages:MainPageModel"
+             Title="ImageSharp MAUI Tester">
+
+    <VerticalStackLayout Spacing="8" Margin="16" MaximumWidthRequest="300" HorizontalOptions="Fill">
+        <Button Text="Run all tests" Command="{Binding RunAllTestsCommand}" />
+        <Button Text="Run specific test" Command="{Binding RunSpecificTestCommand}" />
+        <Button Text="View logs" Command="{Binding ViewLogsCommand}" />
+    </VerticalStackLayout>
+
+</ContentPage>

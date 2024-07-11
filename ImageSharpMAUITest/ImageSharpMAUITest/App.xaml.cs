@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using ImageSharpMAUITest.Pages;
 using SixLabors.ImageSharp.Processing;
 
 namespace ImageSharpMAUITest;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:ImageSharpMAUITest.Pages"
+             xmlns:tests="clr-namespace:ImageSharpMAUITest.Tests"
+             x:Class="ImageSharpMAUITest.Pages.TestsListPage"
+             x:DataType="pages:TestsListPageModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <ListView ItemsSource="{Binding Tests}" x:Name="MyListView" SelectionMode="Single">
+        
+        
+        <ListView.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding RunTestCommand}" 
+                CommandParameter="{x:Reference MyListView}" />
+        </ListView.Behaviors>
+        
+        
+        <!--
+                CommandParameter="{Binding Source={RelativeSource Self}, Path=.}"
+
+                        x:TypeArguments="SelectedItemChangedEventArgs"
+
+
+{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}}
+
+                EventArgsConverter="{StaticResource SelectedItemEventArgsConverter}"-->
+        
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="tests:ITest">
+                <TextCell Text="{Binding TestName}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</ContentPage>
