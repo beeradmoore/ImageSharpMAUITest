@@ -6,6 +6,7 @@ namespace ImageSharpMAUITest.Tests;
 public class PngResize : ITest
 {
     public string TestName { get; } = "Png resize";
+    public TestTypes TestType { get; } = TestTypes.PngResize;
     
     public async Task<long> RunTest()
     {

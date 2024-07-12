@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:ImageSharpMAUITest.Pages"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ImageSharpMAUITest.Pages.TestPage"
+             x:DataType="pages:TestPageModel"
+             NavigationPage.HasBackButton="false">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Done" Command="{Binding DoneCommand}" IsEnabled="{Binding IsRunningTests, Converter={StaticResource InvertedBoolConverter}}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*,Auto" Margin="16">
+        <Grid Grid.RowSpan="2" RowDefinitions="Auto,Auto" RowSpacing="16" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsRunningTests}">
+            <ActivityIndicator IsRunning="true" Grid.Row="0" />
+            <Label Grid.Row="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Running test: " />
+                        <Span Text="{Binding CurrentTestName}" />
+                        <Span Text=" (" />
+                        <Span Text="{Binding CurrentTest}" />
+                        <Span Text="/" />
+                        <Span Text="{Binding TotalTests}" />
+                        <Span Text=")" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+        <Editor Grid.Row="0" Text="{Binding ResultText}" IsVisible="{Binding IsRunningTests, Converter={StaticResource InvertedBoolConverter}}" />
+        <Button Grid.Row="1" Text="Share test results" Command="{Binding ShareCommand}" IsVisible="{Binding IsRunningTests, Converter={StaticResource InvertedBoolConverter}}" />
+    </Grid>
+</ContentPage>

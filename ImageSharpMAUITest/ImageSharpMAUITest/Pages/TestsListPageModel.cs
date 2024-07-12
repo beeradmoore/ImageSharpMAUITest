@@ -8,22 +8,17 @@ namespace ImageSharpMAUITest.Pages;
 
 public partial class TestsListPageModel : ObservableObject
 {
-    TestTypes[] TestTypes { get; init; }
-    
     WeakReference<TestsListPage> weakPage;
     
     public List<ITest> Tests { get; } = new List<ITest>();
-
-    [ObservableProperty]
-    ITest? selectedTest;
     
     public TestsListPageModel(TestsListPage page)
     {
         weakPage = new WeakReference<TestsListPage>(page);
 
-        TestTypes = Enum.GetValues<TestTypes>();
+        var testTypes = Enum.GetValues<TestTypes>();
 
-        foreach (var testType in TestTypes)
+        foreach (var testType in testTypes)
         {
             Tests.Add(TestManager.GetTest(testType));
         }
@@ -33,27 +28,23 @@ public partial class TestsListPageModel : ObservableObject
     [RelayCommand(AllowConcurrentExecutions = false)]
     async Task RunTestAsync(ListView sourceListView)
     {
-        if (sourceListView.SelectedItem is ITest selectedTest)
+        if (weakPage.TryGetTarget(out TestsListPage? testsListPage))
         {
-            sourceListView.SelectedItem = null;
-
-            //await selectedTest.RunTest();
-        }
-    }
-
-    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
-    {
-        base.OnPropertyChanged(e);
-
-        if (e.PropertyName == nameof(SelectedTest))
-        {
-            if (SelectedTest == null)
+            if (sourceListView.SelectedItem is ITest selectedTest)
             {
-                return;
-            }
+                var testType = selectedTest.TestType;
 
-            var testToRun = SelectedTest;
-            SelectedTest = null;
+                sourceListView.SelectedItem = null;
+
+                var testsToRun = new List<ITest>(10);
+                for (int i = 0; i < 10; i++)
+                {
+                    testsToRun.Add(TestManager.GetTest(testType));
+                }
+
+                await testsListPage.Navigation.PushModalAsync(new NavigationPage(new TestPage(testsToRun)));
+            }
         }
     }
+
 }

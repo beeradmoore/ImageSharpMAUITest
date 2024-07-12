@@ -5,6 +5,7 @@ namespace ImageSharpMAUITest.Tests;
 public class PngLoad : ITest
 {
     public string TestName { get; } = "Png load";
+    public TestTypes TestType { get; } = TestTypes.PngLoad;
     
     public async Task<long> RunTest()
     {

@@ -5,9 +5,10 @@
              xmlns:pages="clr-namespace:ImageSharpMAUITest.Pages"
              x:Class="ImageSharpMAUITest.Pages.MainPage"
              x:DataType="pages:MainPageModel"
-             Title="ImageSharp MAUI Tester">
+             Title="ImageSharp MAUI Tester"
+             NavigationPage.BackButtonTitle="Back">
 
-    <VerticalStackLayout Spacing="8" Margin="16" MaximumWidthRequest="300" HorizontalOptions="Fill">
+    <VerticalStackLayout Spacing="8" Margin="16" VerticalOptions="Center" HorizontalOptions="Center">
         <Button Text="Run all tests" Command="{Binding RunAllTestsCommand}" />
         <Button Text="Run specific test" Command="{Binding RunSpecificTestCommand}" />
         <Button Text="View logs" Command="{Binding ViewLogsCommand}" />

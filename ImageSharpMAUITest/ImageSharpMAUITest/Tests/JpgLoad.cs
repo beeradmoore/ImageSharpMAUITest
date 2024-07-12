@@ -5,6 +5,7 @@ namespace ImageSharpMAUITest.Tests;
 public class JpgLoad : ITest
 {
     public string TestName { get; } = "Jpg load";
+    public TestTypes TestType { get; } = TestTypes.JpgLoad;
 
     public async Task<long> RunTest()
     {

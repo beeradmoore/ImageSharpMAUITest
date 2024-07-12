@@ -2,6 +2,9 @@ namespace ImageSharpMAUITest.Tests;
 
 public enum TestTypes
 {
+    #if DEBUG
+    DelayTest,
+    #endif
     JpgLoad,
     JpgResize,
     PngLoad,
@@ -11,6 +14,7 @@ public enum TestTypes
 public interface ITest
 {
     public string TestName { get; }
+    public TestTypes TestType { get; }
     
     Task<long> RunTest();
 }

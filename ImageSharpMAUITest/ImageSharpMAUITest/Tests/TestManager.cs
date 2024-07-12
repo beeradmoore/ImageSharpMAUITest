@@ -6,6 +6,9 @@ public class TestManager
     {
         return testType switch
         {
+            #if DEBUG
+            TestTypes.DelayTest => new DelayTest(),
+            #endif
             TestTypes.JpgLoad => new JpgLoad(),
             TestTypes.JpgResize => new JpgResize(),
             TestTypes.PngLoad => new PngLoad(),

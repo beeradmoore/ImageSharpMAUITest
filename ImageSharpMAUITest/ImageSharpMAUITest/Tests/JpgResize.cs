@@ -6,6 +6,7 @@ namespace ImageSharpMAUITest.Tests;
 public class JpgResize : ITest
 {
     public string TestName { get; } = "Jpg resize";
+    public TestTypes TestType { get; } = TestTypes.JpgResize;
     
     public async Task<long> RunTest()
     {
