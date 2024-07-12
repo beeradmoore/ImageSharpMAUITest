@@ -58,9 +58,9 @@ public partial class TestPageModel : ObservableObject
         {
             stringBuilder.AppendLine($"{testType}");
             stringBuilder.AppendLine($"Test runs: {testResults[testType].Count}");
-            stringBuilder.AppendLine($"Min: {testResults[testType].Min()}");
-            stringBuilder.AppendLine($"Max: {testResults[testType].Max()}");
-            stringBuilder.AppendLine($"Average: {testResults[testType].Average()}");
+            stringBuilder.AppendLine($"Min: {testResults[testType].Min()}ms");
+            stringBuilder.AppendLine($"Max: {testResults[testType].Max()}ms");
+            stringBuilder.AppendLine($"Average: {testResults[testType].Average()}ms");
             stringBuilder.AppendLine();
         }
 
