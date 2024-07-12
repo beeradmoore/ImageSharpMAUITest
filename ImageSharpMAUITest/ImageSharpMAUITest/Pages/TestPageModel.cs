@@ -65,6 +65,9 @@ public partial class TestPageModel : ObservableObject
         }
 
         ResultText = stringBuilder.ToString();
+
+        Console.WriteLine(ResultText);
+        
         IsRunningTests = false;
         Title = "Results";
     }
