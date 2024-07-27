@@ -73,12 +73,8 @@
 
     <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' AND '$(Configuration)' == 'Release'">
         <EnableLLVM>true</EnableLLVM>
-    </PropertyGroup>
-    
-<!--
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <RunAOTCompilation>true</RunAOTCompilation>
         <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     </PropertyGroup>
--->
+    
 </Project>
