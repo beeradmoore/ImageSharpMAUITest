@@ -76,5 +76,10 @@
         <RunAOTCompilation>true</RunAOTCompilation>
         <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' AND '$(Configuration)' == 'Debug'">
+        <!-- performance improvements for debug mode, will break hot reload. -->
+        <UseInterpreter>false</UseInterpreter>
+    </PropertyGroup>
     
 </Project>
