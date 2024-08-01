@@ -11,6 +11,7 @@ public partial class MainPageModel : ObservableObject
     
     public MainPageModel(MainPage page)
     {
+        Console.WriteLine("Vector.IsHardwareAccelerated: " + (System.Numerics.Vector.IsHardwareAccelerated ? "True" : "False"));
         weakPage = new WeakReference<MainPage>(page);
     }
 
