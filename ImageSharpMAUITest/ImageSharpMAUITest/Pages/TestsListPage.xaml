@@ -13,7 +13,9 @@
             <toolkit:EventToCommandBehavior
                 EventName="ItemSelected"
                 Command="{Binding RunTestCommand}" 
-                CommandParameter="{x:Reference MyListView}" />
+                CommandParameter="{x:Reference MyListView}"
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyListView}}"
+                />
         </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="tests:ITest">
