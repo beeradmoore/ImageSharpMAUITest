@@ -14,7 +14,7 @@
                 EventName="ItemSelected"
                 Command="{Binding RunTestCommand}" 
                 CommandParameter="{x:Reference MyListView}"
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyListView}}"
+                BindingContext="{Binding Path=BindingContext, Source={x:Reference MyListView}, x:DataType=pages:TestsListPageModel}"
                 />
         </ListView.Behaviors>
         <ListView.ItemTemplate>
