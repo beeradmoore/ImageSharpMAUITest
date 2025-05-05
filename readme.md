@@ -17,18 +17,18 @@ I edit `ImageSharpMAUITest.csproj` to change the line
 <PackageReference Include="SixLabors.ImageSharp" Version="x.y.z" />
 ```
 
-to be either version 3.1.4 (remote) or 0.0.1 (local).
+to be either version 3.1.8 (remote) or 0.0.1 (local).
 
 I then delete `bin/`, `obj/`, and `~/.nuget/packages/sixlabors.*`. When I build the nuget packages are restored which will mean also loaded directly from local directory or nuget.org.
 
 ## Building and deploying for debug
 
 ```
-dotnet build -t:Run -c Debug -f net8.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
+dotnet build -t:Run -c Debug -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
 ```
 
 ## Building and deploying for release
 
 ```
-dotnet build -t:Run -c Release -f net8.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
+dotnet build -t:Run -c Release -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
 ```
