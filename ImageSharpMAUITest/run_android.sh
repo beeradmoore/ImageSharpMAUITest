@@ -2,6 +2,9 @@
 
 set -e
 
+rm -rf ImageSharpMAUITest/bin
+rm -rf ImageSharpMAUITest/obj
+
 
 #emulator -list-avds
 #emulator -avd Pixel_3a_API_34

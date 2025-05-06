@@ -2,6 +2,9 @@
 
 set -e
 
+rm -rf ImageSharpMAUITest/bin
+rm -rf ImageSharpMAUITest/obj
+
 CONFIGURATION=Debug
 
 # Config for device
