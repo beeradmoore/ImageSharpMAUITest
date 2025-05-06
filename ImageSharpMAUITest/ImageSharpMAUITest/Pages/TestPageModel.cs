@@ -39,8 +39,14 @@ public partial class TestPageModel : ObservableObject
     public async Task RunTestsAsync()
     {
         var stringBuilder = new StringBuilder();
+#if DEBUG
+        stringBuilder.AppendLine("Configuration: Debug");
+#else
+        stringBuilder.AppendLine("Configuration: Release");
+#endif
+        
         stringBuilder.AppendLine("Test results:");
-        for (int i = 0; i < testsToRun.Count; ++i)
+        for (var i = 0; i < testsToRun.Count; ++i)
         {
             CurrentTest = i + 1;
             CurrentTestName = testsToRun[i].TestName;
@@ -51,20 +57,48 @@ public partial class TestPageModel : ObservableObject
                 testResults.Add(currentTestType, new List<long>());
             }
             testResults[currentTestType].Add(testTime);
-            stringBuilder.AppendLine($"{testsToRun[i].TestName} - {testTime}ms");
+            stringBuilder.AppendLine($"{testsToRun[i].TestName} - {testTime:F1}ms");
         }
         stringBuilder.AppendLine("\n\nSummary:");
-        foreach (var testType in testResults.Keys)
+        
+        
+        var testTypes = testResults.Keys.ToList();
+        
+        foreach (var testType in testTypes)
         {
             stringBuilder.AppendLine($"{testType}");
             stringBuilder.AppendLine($"Test runs: {testResults[testType].Count}");
-            stringBuilder.AppendLine($"Min: {testResults[testType].Min()}ms");
-            stringBuilder.AppendLine($"Max: {testResults[testType].Max()}ms");
-            stringBuilder.AppendLine($"Average: {testResults[testType].Average()}ms");
+            stringBuilder.AppendLine($"Min: {testResults[testType].Min():F1}ms");
+            stringBuilder.AppendLine($"Max: {testResults[testType].Max():F1}ms");
+            stringBuilder.AppendLine($"Average: {testResults[testType].Average():F1}ms");
             stringBuilder.AppendLine();
         }
+        stringBuilder.AppendLine();
+        
+        foreach (var testType in testTypes)
+        {
+            stringBuilder.Append($"| {testType} ");
+        }
+        stringBuilder.AppendLine("|");
+        
+        foreach (var testType in testTypes)
+        {
+            var title = testType.ToString();
+            var padding = "--";
+            stringBuilder.Append($"|-{padding.PadRight(title.Length, '-')}-");
+        }
+        stringBuilder.AppendLine("|");
 
+        foreach (var testType in testTypes)
+        {
+            var title = testType.ToString();
+            var result = $"{testResults[testType].Average():F1}ms";
+            stringBuilder.Append($"| {result.PadRight(title.Length, ' ')} ");
+        }
+        stringBuilder.AppendLine("|");
+        
         ResultText = stringBuilder.ToString();
+        
 
         Console.WriteLine(ResultText);
         
