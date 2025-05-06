@@ -76,6 +76,9 @@ public partial class TestPageModel : ObservableObject
 #else
         stringBuilder.AppendLine("Configuration: Release");
 #endif
+        
+        stringBuilder.AppendLine($"OS Version: {DeviceInfo.Current.VersionString}");
+        stringBuilder.AppendLine($"SkiaSharp Version: {SkiaSharp.SkiaSharpVersion.Native.ToString()}");
 
         var deviceType = "Unknown Device";
         var space = " ";
