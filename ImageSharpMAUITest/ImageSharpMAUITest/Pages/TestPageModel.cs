@@ -39,11 +39,6 @@ public partial class TestPageModel : ObservableObject
     public async Task RunTestsAsync()
     {
         var stringBuilder = new StringBuilder();
-#if DEBUG
-        stringBuilder.AppendLine("Configuration: Debug");
-#else
-        stringBuilder.AppendLine("Configuration: Release");
-#endif
         
         stringBuilder.AppendLine("Test results:");
         for (var i = 0; i < testsToRun.Count; ++i)
@@ -75,20 +70,63 @@ public partial class TestPageModel : ObservableObject
         }
         stringBuilder.AppendLine();
         
+        
+#if DEBUG
+        stringBuilder.AppendLine("Configuration: Debug");
+#else
+        stringBuilder.AppendLine("Configuration: Release");
+#endif
+
+        var deviceType = "Unknown Device";
+        var space = " ";
+        // Add device information
+        if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
+        { 
+            if (DeviceInfo.Current.DeviceType == DeviceType.Physical)
+            {
+                deviceType = "iPhone";
+            }
+            else if (DeviceInfo.Current.DeviceType == DeviceType.Virtual)
+            {
+                deviceType = "iPhone Simulator";
+            } 
+        }
+        else if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            if (DeviceInfo.Current.DeviceType == DeviceType.Physical)
+            {
+                deviceType = "Android";
+            }
+            else if (DeviceInfo.Current.DeviceType == DeviceType.Virtual)
+            {
+                deviceType = "Android Emulator";
+            } 
+        }
+        else if (DeviceInfo.Current.Platform == DevicePlatform.MacCatalyst)
+        { 
+            deviceType = "macOS";
+        }
+        else if (DeviceInfo.Current.Platform == DevicePlatform.WinUI)
+        { 
+            deviceType = "Windows";
+        }
+        
+        stringBuilder.Append($"| {string.Empty.PadRight(deviceType.Length, ' ')} ");
         foreach (var testType in testTypes)
         {
             stringBuilder.Append($"| {testType} ");
         }
         stringBuilder.AppendLine("|");
-        
+
+        stringBuilder.Append($"|-{string.Empty.PadRight(deviceType.Length, '-')}-");
         foreach (var testType in testTypes)
         {
             var title = testType.ToString();
-            var padding = "--";
-            stringBuilder.Append($"|-{padding.PadRight(title.Length, '-')}-");
+            stringBuilder.Append($"|-{string.Empty.PadRight(title.Length, '-')}-");
         }
         stringBuilder.AppendLine("|");
-
+        
+        stringBuilder.Append($"| {deviceType} ");
         foreach (var testType in testTypes)
         {
             var title = testType.ToString();
