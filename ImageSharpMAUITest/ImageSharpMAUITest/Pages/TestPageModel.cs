@@ -1,7 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ImageSharpMAUITest.Tests;
+using Microsoft.Maui.ApplicationModel.DataTransfer;
+using Microsoft.Maui.Devices;
 
 namespace ImageSharpMAUITest.Pages;
 
@@ -54,8 +60,10 @@ public partial class TestPageModel : ObservableObject
             testResults[currentTestType].Add(testTime);
             stringBuilder.AppendLine($"{testsToRun[i].TestName} - {testTime}ms");
         }
+
+        var testTypes = testResults.Keys.ToList();
         stringBuilder.AppendLine("\n\nSummary:");
-        foreach (var testType in testResults.Keys)
+        foreach (var testType in testTypes)
         {
             stringBuilder.AppendLine($"{testType}");
             stringBuilder.AppendLine($"Test runs: {testResults[testType].Count}");
@@ -74,7 +82,7 @@ public partial class TestPageModel : ObservableObject
 #endif
         
         stringBuilder.AppendLine($"OS Version: {DeviceInfo.Current.VersionString}");
-        stringBuilder.AppendLine($"SkiaSharp Version: {SkiaSharp.SkiaSharpVersion.Native.ToString()}");
+        //stringBuilder.AppendLine($"SkiaSharp Version: {SkiaSharp.SkiaSharpVersion.Native.ToString()}");
 
         var deviceType = "Unknown Device";
         var space = " ";
