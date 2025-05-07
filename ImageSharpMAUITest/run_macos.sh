@@ -4,6 +4,7 @@ set -e
 
 rm -rf ImageSharpMAUITest/bin
 rm -rf ImageSharpMAUITest/obj
+rm -rf ~/.nuget/packages/sixlabors.imagesharp/0.0.1
 
 CONFIGURATION=Release
 RUNTIME_IDENTIFIER=maccatalyst-arm64
