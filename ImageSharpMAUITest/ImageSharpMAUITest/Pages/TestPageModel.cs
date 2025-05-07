@@ -41,7 +41,7 @@ public partial class TestPageModel : ObservableObject
         var stringBuilder = new StringBuilder();
         
         stringBuilder.AppendLine("Test results:");
-        for (var i = 0; i < testsToRun.Count; ++i)
+        for (int i = 0; i < testsToRun.Count; ++i)
         {
             CurrentTest = i + 1;
             CurrentTestName = testsToRun[i].TestName;
@@ -52,20 +52,16 @@ public partial class TestPageModel : ObservableObject
                 testResults.Add(currentTestType, new List<long>());
             }
             testResults[currentTestType].Add(testTime);
-            stringBuilder.AppendLine($"{testsToRun[i].TestName} - {testTime:F1}ms");
+            stringBuilder.AppendLine($"{testsToRun[i].TestName} - {testTime}ms");
         }
         stringBuilder.AppendLine("\n\nSummary:");
-        
-        
-        var testTypes = testResults.Keys.ToList();
-        
-        foreach (var testType in testTypes)
+        foreach (var testType in testResults.Keys)
         {
             stringBuilder.AppendLine($"{testType}");
             stringBuilder.AppendLine($"Test runs: {testResults[testType].Count}");
-            stringBuilder.AppendLine($"Min: {testResults[testType].Min():F1}ms");
-            stringBuilder.AppendLine($"Max: {testResults[testType].Max():F1}ms");
-            stringBuilder.AppendLine($"Average: {testResults[testType].Average():F1}ms");
+            stringBuilder.AppendLine($"Min: {testResults[testType].Min()}ms");
+            stringBuilder.AppendLine($"Max: {testResults[testType].Max()}ms");
+            stringBuilder.AppendLine($"Average: {testResults[testType].Average()}ms");
             stringBuilder.AppendLine();
         }
         stringBuilder.AppendLine();
@@ -139,7 +135,6 @@ public partial class TestPageModel : ObservableObject
         stringBuilder.AppendLine("|");
         
         ResultText = stringBuilder.ToString();
-        
 
         Console.WriteLine(ResultText);
         

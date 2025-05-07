@@ -3,19 +3,19 @@ using SixLabors.ImageSharp.Processing;
 
 namespace ImageSharpMAUITest.Tests;
 
-public class PngResizeImageSharp : ITest
+public class PngResize : ITest
 {
-    public string TestName { get; } = "Png resize (ImageSharp)";
-    public TestTypes TestType { get; } = TestTypes.PngResizeImageSharp;
+    public string TestName { get; } = "Png resize";
+    public TestTypes TestType { get; } = TestTypes.PngResize;
     
     public async Task<long> RunTest()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        await using (var stream = await FileSystem.OpenAppPackageFileAsync(Helpers.PngTestImage).ConfigureAwait(false))
+        using (var stream = await FileSystem.OpenAppPackageFileAsync("Bike.png"))
         {
-            using (var image = await SixLabors.ImageSharp.Image.LoadAsync(stream).ConfigureAwait(false))
+            using (var image = await SixLabors.ImageSharp.Image.LoadAsync(stream))
             {
                 image.Mutate(x => x.Resize(100, 200));
             }

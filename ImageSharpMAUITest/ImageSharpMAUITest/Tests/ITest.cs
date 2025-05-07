@@ -5,14 +5,10 @@ public enum TestTypes
     #if DEBUG
     DelayTest,
     #endif
-    JpgLoadImageSharp,
-    JpgLoadSaveImageSharp,
-    JpgLoadSkiaSharp,
-    JpgLoadSaveSkiaSharp,
-    JpgResizeImageSharp,
-    JpgResizeSkiaSharp,
-    PngLoadImageSharp,
-    PngResizeImageSharp,
+    JpgLoad,
+    JpgResize,
+    PngLoad,
+    PngResize,
 }
 
 public interface ITest
