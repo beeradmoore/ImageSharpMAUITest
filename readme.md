@@ -24,11 +24,11 @@ I then delete `bin/`, `obj/`, and `~/.nuget/packages/sixlabors.*`. When I build 
 ## Building and deploying for debug
 
 ```
-dotnet build -t:Run -c Debug -f net10.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
+dotnet build -t:Run -c Debug -f net11.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
 ```
 
 ## Building and deploying for release
 
 ```
-dotnet build -t:Run -c Release -f net10.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
+dotnet build -t:Run -c Release -f net11.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=MYDEVICEID
 ```

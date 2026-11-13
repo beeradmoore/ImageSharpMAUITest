@@ -16,7 +16,7 @@ RUNTIME_IDENTIFIER=android-arm64
 
 dotnet build \
     /t:Run \
-    --framework net10.0-android \
+    --framework net11.0-android \
     --configuration $CONFIGURATION \
     -p:RuntimeIdentifier=$RUNTIME_IDENTIFIER \
     ImageSharpMAUITest/ImageSharpMAUITest.csproj
