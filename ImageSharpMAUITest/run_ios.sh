@@ -22,7 +22,7 @@ DEVICE_UDID=:v2:udid=SIMULATOR-UDID-GOES-HERE
 
 dotnet build \
     /t:Run \
-    --framework net9.0-ios \
+    --framework net10.0-ios \
     --configuration $CONFIGURATION \
     -p:RuntimeIdentifier=$RUNTIME_IDENTIFIER \
     -p:_DeviceName=$DEVICE_UDID \
